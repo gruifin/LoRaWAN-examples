@@ -27,10 +27,10 @@ const uint8_t nwkSKey[16] = { 0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0x
 void setup() {
   
   //Enable this code if you're connecting the board to your pc, for smooth reading
-  while(!SerialUSB) {
-    ;
-  }
-  delay(1500);
+  //while(!SerialUSB) {
+  //  ;
+  //}
+  //delay(1500);
 
   // LoRaWAN
   loraSerial.begin(LoRaBee.getDefaultBaudRate());
@@ -58,11 +58,20 @@ void setup() {
 
 void loop() {
     
+    LoRaSet(true);
+    
     if (BUTTON_PIN == 1){
         digitalWrite(LED_PIN, HIGH);
+        for(int x; x<10; x++){
+            delay(500);
+            if (x == 8){
+                message();
+            }
+        }
     } else {
         digitalWrite(LED_PIN, LOW);
     }
+
 
 
   //this function turns the LoRa module ON/OFF depending on the set integer
